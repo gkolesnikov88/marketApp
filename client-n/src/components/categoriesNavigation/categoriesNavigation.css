@@ -1,0 +1,8 @@
+.delete-icon:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.category-link:hover {
+    color: #3036cb;
+}

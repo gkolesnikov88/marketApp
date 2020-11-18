@@ -11,6 +11,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./store/reducers/rootReducer";
 
 import {Provider} from 'react-redux';
+import {BrowserRouter} from "react-router-dom";
 
 const composeEnhancers =
   typeof window === 'object' &&
@@ -23,7 +24,9 @@ const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)))
 
 const app = (
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 );
 

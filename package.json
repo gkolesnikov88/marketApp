@@ -1,0 +1,27 @@
+{
+  "name": "appcrud",
+  "version": "1.0.0",
+  "description": "Mern app for accounting of goods",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix client-new",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [
+    "Mern",
+    "Crud"
+  ],
+  "author": "George Kolesnikov <gkolesnikov88@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.2",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.9"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
+  }
+}

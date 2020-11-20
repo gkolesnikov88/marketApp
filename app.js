@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(express.json({ extended: true }));
 
+app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/goods', require('./routes/goods.routes'));
 app.use('/api/categories', require('./routes/categories.routes'));
 
@@ -17,6 +18,7 @@ async function start() {
       useUnifiedTopology: true,
       useCreateIndex: true
     });
+
     app.listen(PORT, () => {
       console.log(`App has been started on port ${PORT}`)
     })

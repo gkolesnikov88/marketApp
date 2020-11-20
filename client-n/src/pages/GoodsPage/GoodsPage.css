@@ -1,3 +1,13 @@
 .btn {
     padding: 0.1rem;
 }
+
+.goods-nav-link {
+    margin: 0.1rem 0.5rem;
+    max-width: 150px;
+}
+
+.goods-nav-link .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
+}

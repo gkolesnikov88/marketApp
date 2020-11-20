@@ -1,4 +1,10 @@
 
+export const auth = {
+  AUTH_SUCCESS: 'AUTH_SUCCESS',
+  AUTH_LOGOUT: 'AUTH_LOGOUT',
+  AUTH_ERROR: 'AUTH_ERROR',
+}
+
 export const goods = {
   DELETE_BY_ID: 'DELETE_BY_ID',
   SAVE_BY_ID: 'SAVE_BY_ID',

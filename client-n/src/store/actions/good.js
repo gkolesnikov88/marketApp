@@ -47,13 +47,13 @@ export function fetchGoodsByCategories(catId) {
   }
 }
 
-export function deleteById(goodsId) {
+export function deleteById(goodsId, token) {
   return async (dispatch) => {
     try {
-      const response = await fetch(`/api/goods/${goodsId}`, {
+      await fetch(`/api/goods/${goodsId}`, {
         method: 'DELETE',
+        headers: {'Authorization': `Bearer ${token}`}
       });
-      // const data = await response.json();
 
       dispatch(fetchGoods());
 
@@ -66,12 +66,11 @@ export function deleteById(goodsId) {
 export function saveById(newGood) {
   return async (dispatch) => {
     try {
-      const response = await fetch('/api/goods', {
+      await fetch('/api/goods', {
         method: 'PUT',
         body: JSON.stringify(newGood),
         headers: {'Content-Type': 'application/json'}
       });
-      const data = await response.json();
 
       dispatch(fetchGoods());
 

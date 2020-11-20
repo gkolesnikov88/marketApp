@@ -1,5 +1,4 @@
 import * as types from "./actionsType";
-import {fetchGoods} from "./good";
 
 export function fetchCategories() {
   return async (dispatch) => {

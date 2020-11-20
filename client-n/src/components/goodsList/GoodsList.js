@@ -11,6 +11,7 @@ export const GoodsList = () => {
   const goodsList = useSelector(state => state.good.goodsList);
   const goodsLoading = useSelector(state => state.good.goodsLoading);
   const categoriesList = useSelector(state => state.categories.categoriesList);
+  const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export const GoodsList = () => {
         {
           className: 'btn-danger',
           title: 'Delete',
-          action: () => { dispatch(deleteById(item._id)) }
+          action: () => { dispatch(deleteById(item._id, token)) }
         }
       ]
     })

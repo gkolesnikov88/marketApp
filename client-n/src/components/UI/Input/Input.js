@@ -6,15 +6,11 @@ function isInvalid({valid, touched, shouldValidate}) {
 
 export const Input = props => {
   const inputType = props.type || 'text';
-  const cls = ['Input'];
-  const htmlFor = `${inputType}-${Math.random()}`;
-
-  if (isInvalid(props)) {
-    cls.push('invalid');
-  }
+  const htmlFor = `${inputType}`;
+  const className = `Input ${isInvalid(props) && 'invalid'}`;
 
   return (
-    <div className={cls.join(' ')}>
+    <div className={className}>
       <label htmlFor={htmlFor}>{props.label}</label>
       <input
         type={inputType}

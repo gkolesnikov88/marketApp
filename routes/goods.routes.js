@@ -2,6 +2,7 @@ const {Router} = require('express');
 const router = new Router();
 const Goods = require('../models/Goods');
 const {Types} = require('mongoose');
+const auth = require('./../middleware/auth.middleware');
 
 // root - /api/goods
 
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const {name, purchase, sell, category} = req.body;
     const good = new Goods({
@@ -30,7 +31,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/', async (req, res) => {
+router.put('/', auth, async (req, res) => {
   try {
     const {_id, name, purchase, sell, category} = req.body;
     const good = await Goods.findById(_id);
@@ -46,7 +47,7 @@ router.put('/', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     const good = await Goods.findOneAndDelete({_id: req.params.id});
     res.json(good);

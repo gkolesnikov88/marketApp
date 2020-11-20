@@ -4,6 +4,7 @@ import {useContext} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createGood} from "../../store/actions/good";
 import {createCategory} from "../../store/actions/categories";
+import {NavLink} from "react-router-dom";
 
 
 export const GoodsNavigation = () => {
@@ -101,11 +102,17 @@ export const GoodsNavigation = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <li className="nav-item nav-button mr-2">
+          <li className="nav-item nav-button goods-nav-link">
             <div className="nav-link nav-content" onClick={ onAddCategory }>Add category</div>
           </li>
-          <li className="nav-item nav-button">
+          <li className="nav-item nav-button goods-nav-link">
             <div className="nav-link nav-content" onClick={ onAddGood }>Add good</div>
+          </li>
+          <li className="nav-item nav-button goods-nav-link">
+            <NavLink to='/market' className="nav-link nav-content">To user side</NavLink>
+          </li>
+          <li className="nav-item nav-button goods-nav-link">
+            <NavLink to='/logout' className="nav-link nav-content">Logout</NavLink>
           </li>
         </ul>
       </div>

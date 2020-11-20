@@ -2,11 +2,13 @@ import './App.css';
 import {GoodsPage} from "./pages/GoodsPage/GoodsPage";
 import {Layout} from "./hoc/layout/Layout";
 import GoodsPageContext from "./pages/GoodsPage/GoodsPageContext";
-import {useState} from "react";
-import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {AuthPage} from "./pages/Auth/Auth";
 import {MarketPage} from "./pages/Market/MarketPage";
+import {autoLogin} from "./store/actions/auth";
+import {Logout} from "./components/logout/Logout";
 
 function App() {
 
@@ -19,10 +21,13 @@ function App() {
   })
 
   // redux
-  const isAuthenticated = useSelector(state => !!state.auth.token);
   const token = useSelector(state => state.auth.token);
-  console.log(token);
-  console.log(isAuthenticated);
+  const dispatch = useDispatch();
+  const isAdminAuthenticated = !!token;
+
+  useEffect(() => {
+    dispatch(autoLogin());
+  },[dispatch]);
 
   let routes = (
     <Switch>
@@ -31,11 +36,12 @@ function App() {
       <Redirect to="/"/>
     </Switch>
   )
-  if (isAuthenticated) {
+  if (isAdminAuthenticated) {
     routes = (
       <Switch>
-        <Route path="/admin" component={ GoodsPage }/>
-        <Route path="/" exact component={ MarketPage }/>
+        <Route path="/market" component={ MarketPage }/>
+        <Route path="/logout" component={ Logout }/>
+        <Route path="/" exact component={ GoodsPage }/>
         <Redirect to="/"/>
       </Switch>
     )

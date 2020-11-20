@@ -67,7 +67,7 @@ export const GoodsList = () => {
         {
           className: 'btn-primary',
           title: 'Save',
-          action: (modalOptionsFromModal) => { onSaveById(modalOptionsFromModal, item._id) }
+          action: (modalOptionsFromModal) => { onSaveById(modalOptionsFromModal, item._id, token) }
         }
       ]
     })
@@ -82,14 +82,14 @@ export const GoodsList = () => {
     })
   }
 
-  const onSaveById = (modalOptionsFromModal, itemId) => {
+  const onSaveById = (modalOptionsFromModal, itemId, token) => {
     dispatch(saveById({
       _id: itemId,
       name: modalOptionsFromModal.elements.name.value,
       purchase: modalOptionsFromModal.elements.purchase.value,
       sell: modalOptionsFromModal.elements.sell.value,
       category: modalOptionsFromModal.elements.category.value
-    }))
+    }, token));
   }
 
   return (

@@ -63,13 +63,16 @@ export function deleteById(goodsId, token) {
   }
 }
 
-export function saveById(newGood) {
+export function saveById(newGood, token) {
   return async (dispatch) => {
     try {
       await fetch('/api/goods', {
         method: 'PUT',
         body: JSON.stringify(newGood),
-        headers: {'Content-Type': 'application/json'}
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       });
 
       dispatch(fetchGoods());
@@ -86,15 +89,17 @@ export function saveByIdAction(newGoods) {
   }
 }
 
-export function createGood(newGood) {
+export function createGood(newGood, token) {
   return async (dispatch) => {
     try {
-      const response = await fetch('/api/goods', {
+      await fetch('/api/goods', {
         method: 'POST',
         body: JSON.stringify(newGood),
-        headers: {'Content-Type': 'application/json'}
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
       });
-      const data = await response.json();
 
       dispatch(fetchGoods());
 

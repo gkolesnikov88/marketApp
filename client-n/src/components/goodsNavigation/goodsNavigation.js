@@ -12,6 +12,7 @@ export const GoodsNavigation = () => {
   // redux
   const dispatch = useDispatch();
   const categoriesList = useSelector(state => state.categories.categoriesList);
+  const token = useSelector(state => state.auth.token);
 
   // context
   const {modalOptions, setModalOptions} = useContext(GoodsPageContext);
@@ -85,7 +86,7 @@ export const GoodsNavigation = () => {
       purchase: modalOptionsFromModal.elements.purchase.value,
       sell: modalOptionsFromModal.elements.sell.value,
       category: modalOptionsFromModal.elements.category.value
-    }))
+    }, token));
   }
 
   const onCreateCategory = (modalOptionsFromModal) => {

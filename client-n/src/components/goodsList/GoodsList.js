@@ -41,6 +41,7 @@ export const GoodsList = () => {
   }
 
   const onChangeById = (item) => {
+    const categoryByDefault = 'Without category';
     setModalOptions({
       ...modalOptions,
       showModal: true,
@@ -59,7 +60,7 @@ export const GoodsList = () => {
           onChange: (modalOptionsFromModal,value) => onInputChange(modalOptionsFromModal,'sell', value)
         },
         category:{
-          type: 'select', text: 'Category', value: item.category || '', id: 'category', selectedId: item.category,
+          type: 'select', text: 'Category', value: item.category || categoryByDefault, id: 'category', selectedId: item.category,
           selectOptions: categoriesList.slice(),
           onChange: (modalOptionsFromModal,value) => onInputChange(modalOptionsFromModal,'category', value)
         }},
@@ -106,12 +107,11 @@ export const GoodsList = () => {
       <tbody>
       { goodsLoading ?
         <tr><td className='d-flex'><Loader/></td></tr>:
-        goodsList.map((item, index) => {
+        goodsList.map((item) => {
           return (
             <GoodItem
               key={item.id}
               item={item}
-              index={index}
               onDeleteById={onDeleteById}
               onChangeById={onChangeById}
             />

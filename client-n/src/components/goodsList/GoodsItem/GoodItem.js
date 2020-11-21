@@ -1,6 +1,5 @@
-import $ from 'jquery';
 
-export const GoodItem = ({item, index, onDeleteById, onChangeById}) => {
+export const GoodItem = ({item, onDeleteById, onChangeById}) => {
 
   return (
     <tr>

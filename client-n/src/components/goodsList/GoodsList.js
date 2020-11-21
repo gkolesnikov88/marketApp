@@ -106,12 +106,11 @@ export const GoodsList = () => {
       <tbody>
       { goodsLoading ?
         <tr><td className='d-flex'><Loader/></td></tr>:
-        goodsList.map((item, index) => {
+        goodsList.map((item) => {
           return (
             <GoodItem
               key={item.id}
               item={item}
-              index={index}
               onDeleteById={onDeleteById}
               onChangeById={onChangeById}
             />

@@ -1,4 +1,4 @@
-config/defult.json should contain:
+config/default.json should contain:
 
 {
   "port": 3010,

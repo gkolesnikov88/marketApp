@@ -2,19 +2,7 @@ import * as types from './actionsType';
 
 export function fetchGoods() {
   return async (dispatch) => {
-    dispatch(fetchGoodsStart());
-
-    try {
-      const response = await fetch('/api/goods');
-      const data = await response.json();
-      const goods = data.map((item, index) => {
-        return {...item, id: index + 1}
-      })
-      dispatch(fetchGoodsSuccess(goods));
-
-    } catch (e) {
-
-    }
+    dispatch(fetchGoodsByCategories());
   }
 }
 export function fetchGoodsStart() {
@@ -34,7 +22,11 @@ export function fetchGoodsByCategories(catId) {
     dispatch(fetchGoodsStart());
 
     try {
-      const response = await fetch(`/api/goods/inCategory/${catId}`);
+      let url = '/api/goods';
+      if (catId !== undefined) {
+        url = `/api/goods/inCategory/${catId}`;
+      }
+      const response = await fetch(url);
       const data = await response.json();
       const goods = data.map((item, index) => {
         return {...item, id: index + 1}

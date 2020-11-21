@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Loader} from "../loader/Loader";
 import {deleteCategoryById, fetchCategories} from "../../store/actions/categories";
 import {useContext, useEffect} from "react";
-import {fetchGoodsByCategories} from "../../store/actions/good";
+import {fetchGoods, fetchGoodsByCategories} from "../../store/actions/good";
 import GoodsPageContext from "../../pages/GoodsPage/GoodsPageContext";
 
 export const CategoriesNavigation = () => {
@@ -41,6 +41,9 @@ export const CategoriesNavigation = () => {
       ]
     })
   }
+  const onClickCategoriesAll = () => {
+    dispatch(fetchGoods());
+  }
 
   return (
     <ul className="nav flex-column">
@@ -63,11 +66,17 @@ export const CategoriesNavigation = () => {
                 </li>
               ))
             }
-            <li className="nav-item" key="-1">
+            <li className="nav-item" key="withoutCat">
               <div
                 className="nav-link category-link"
                 onClick={(event) => onClickCategories(null)}
               >Without category</div>
+            </li>
+            <li className="nav-item" key="allCat">
+              <div
+                className="nav-link category-link"
+                onClick={(event) => onClickCategoriesAll()}
+              >All</div>
             </li>
           </>
       }

@@ -1,6 +1,0 @@
-{
-  "port": 3010,
-  "mongoUri": "mongodb+srv://george:123456G@cluster0.8yxh3.mongodb.net/crudApp?retryWrites=true&w=majority",
-  "baseUrl": "http://localhost:3010",
-  "jwtSecret": "D8^h54M82L@B"
-}

@@ -19,6 +19,7 @@ export const GoodsNavigation = () => {
 
   // actions
   const onAddGood = () => {
+    const categoryByDefault = categoriesList.length ? categoriesList[0]._id : '';
     setModalOptions({
       ...modalOptions,
       showModal: true,
@@ -37,7 +38,7 @@ export const GoodsNavigation = () => {
           onChange: (modalOptionsFromModal,value) => onInputChange(modalOptionsFromModal,'sell', value)
         },
         category:{
-          type: 'select', text: 'Category', value: '', id: 'category', selectedId: null,
+          type: 'select', text: 'Category', value: categoryByDefault, id: 'category', selectedId: null,
           selectOptions: categoriesList.slice(),
           onChange: (modalOptionsFromModal,value) => onInputChange(modalOptionsFromModal,'category', value)
         }},

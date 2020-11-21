@@ -4,7 +4,7 @@ export const GoodItem = ({item, index, onDeleteById, onChangeById}) => {
 
   return (
     <tr>
-      <th scope="row">{index + 1}</th>
+      <th scope="row">{item._id}</th>
       <td>{item.name}</td>
       <td>{item.purchasePrice}</td>
       <td>{item.sellingPrice}</td>

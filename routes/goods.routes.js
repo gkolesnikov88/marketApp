@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const router = new Router();
 const Goods = require('../models/Goods');
+const GoodsEnumerator = require('../models/GoodsEnumerator');
 const {Types} = require('mongoose');
 const auth = require('./../middleware/auth.middleware');
 
@@ -8,7 +9,7 @@ const auth = require('./../middleware/auth.middleware');
 
 router.get('/', async (req, res) => {
   try {
-    const goods = await Goods.find();
+    const goods = await Goods.find({});
     res.json(goods);
   } catch (e) {
     res.status(500).json({message: `Something go wrong, please try again later. ${e.message}`});
@@ -18,11 +19,21 @@ router.get('/', async (req, res) => {
 router.post('/', auth, async (req, res) => {
   try {
     const {name, purchase, sell, category} = req.body;
+
+    const goodsGeneralEnum = await GoodsEnumerator.findOne({name: 'GoodsGeneral'});
+    if (!goodsGeneralEnum) {
+      throw new Error('Enumerator GoodsGeneral is not exist!')
+    }
+    const nextId = goodsGeneralEnum.currentNumber + 1;
+    goodsGeneralEnum.currentNumber = nextId;
+    goodsGeneralEnum.save();
+
     const good = new Goods({
+      _id: nextId,
       name,
       purchasePrice: purchase,
       sellingPrice: sell,
-      category: Types.ObjectId(category)
+      category: category === 'Without category' ? null : Types.ObjectId(category)
     });
     good.save();
     res.status(201).json(good);

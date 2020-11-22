@@ -22,21 +22,22 @@ export function fetchGoodsByCategories(catId) {
     dispatch(fetchGoodsStart());
 
     try {
-      let url = '/api/goods';
-      if (catId !== undefined) {
-        url = `/api/goods/inCategory/${catId}`;
-      }
-      const response = await fetch(url);
-      const data = await response.json();
-      const goods = data.map((item, index) => {
-        return {...item, id: index + 1}
-      })
+      const goods = await returnGoodsInCategory(catId);
       dispatch(fetchGoodsSuccess(goods));
 
     } catch (e) {
 
     }
   }
+}
+export async function returnGoodsInCategory(catId) {
+  let url = '/api/goods';
+  if (catId !== undefined) {
+    url = `/api/goods/inCategory/${catId}`;
+  }
+  const response = await fetch(url);
+  const goods = await response.json();
+  return goods;
 }
 
 export function deleteById(goodsId, token) {
@@ -106,4 +107,17 @@ export function createGoodAction(newGoods, newId) {
     newGoods,
     newId
   }
+}
+
+export async function changeGoodsCategoryTo(catId, token) {
+  return await fetch('/api/goods/changeCategory', {
+    method: 'POST',
+    body: JSON.stringify({
+      catId
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  });
 }

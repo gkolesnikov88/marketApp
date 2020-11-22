@@ -14,6 +14,7 @@ export const CategoriesNavigation = () => {
   // redux
   const categoriesList = useSelector(state => state.categories.categoriesList);
   const categoriesLoading = useSelector(state => state.categories.categoriesLoading);
+  const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export const CategoriesNavigation = () => {
         {
           className: 'btn-danger',
           title: 'Delete',
-          action: () => { dispatch(deleteCategoryById(catid)) }
+          action: () => { dispatch(deleteCategoryById(catid, token)) }
         }
       ]
     })
@@ -53,7 +54,7 @@ export const CategoriesNavigation = () => {
           <>
             {
               categoriesList.map(category => (
-                <li className="nav-item d-flex align-items-center" key={category.id}>
+                <li className="nav-item d-flex align-items-center" key={category._id}>
                   <i className="fas fa-trash-alt delete-icon"
                     data-catid={category._id}
                     onClick={(event) => onClickDeleteCategories(event.target.dataset.catid)}

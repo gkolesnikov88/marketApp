@@ -81,4 +81,20 @@ router.get('/inCategory/:catId', async (req, res) => {
   }
 });
 
+router.post('/changeCategory', auth, async (req, res) => {
+  try {
+    const {catId} = req.body;
+
+    const goods = await Goods.find({category: catId});
+    for (const good of goods) {
+      good.category = null;
+      await good.save();
+    }
+
+    res.status(200).json(goods);
+  } catch (e) {
+    res.status(500).json({message: `Something go wrong, please try again later. ${e.message}`});
+  }
+});
+
 module.exports = router;

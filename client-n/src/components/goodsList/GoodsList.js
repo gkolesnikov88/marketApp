@@ -110,7 +110,7 @@ export const GoodsList = () => {
         goodsList.map((item) => {
           return (
             <GoodItem
-              key={item.id}
+              key={item._id}
               item={item}
               onDeleteById={onDeleteById}
               onChangeById={onChangeById}

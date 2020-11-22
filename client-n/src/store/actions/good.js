@@ -27,10 +27,7 @@ export function fetchGoodsByCategories(catId) {
         url = `/api/goods/inCategory/${catId}`;
       }
       const response = await fetch(url);
-      const data = await response.json();
-      const goods = data.map((item, index) => {
-        return {...item, id: index + 1}
-      })
+      const goods = await response.json();
       dispatch(fetchGoodsSuccess(goods));
 
     } catch (e) {

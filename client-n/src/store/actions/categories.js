@@ -6,10 +6,7 @@ export function fetchCategories() {
 
     try {
       const response = await fetch('/api/categories');
-      const data = await response.json();
-      const categories = data.map((item, index) => {
-        return {...item, id: index + 1}
-      })
+      const categories = await response.json();
       dispatch(fetchCategoriesSuccess(categories));
     } catch (e) {
 
@@ -31,10 +28,9 @@ export function fetchCategoriesSuccess(categories) {
 export function deleteCategoryById(categoryId) {
   return async (dispatch) => {
     try {
-      const response = await fetch(`/api/categories/${categoryId}`, {
+      await fetch(`/api/categories/${categoryId}`, {
         method: 'DELETE',
       });
-      // const data = await response.json();
 
       dispatch(fetchCategories());
 
@@ -47,12 +43,11 @@ export function deleteCategoryById(categoryId) {
 export function createCategory(newCategory) {
   return async (dispatch) => {
     try {
-      const response = await fetch('/api/categories', {
+      await fetch('/api/categories', {
         method: 'POST',
         body: JSON.stringify(newCategory),
         headers: {'Content-Type': 'application/json'}
       });
-      const data = await response.json();
 
       dispatch(fetchCategories());
 

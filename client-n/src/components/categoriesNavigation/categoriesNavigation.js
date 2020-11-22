@@ -53,7 +53,7 @@ export const CategoriesNavigation = () => {
           <>
             {
               categoriesList.map(category => (
-                <li className="nav-item d-flex align-items-center" key={category.id}>
+                <li className="nav-item d-flex align-items-center" key={category._id}>
                   <i className="fas fa-trash-alt delete-icon"
                     data-catid={category._id}
                     onClick={(event) => onClickDeleteCategories(event.target.dataset.catid)}

@@ -14,6 +14,7 @@ export const CategoriesNavigation = () => {
   // redux
   const categoriesList = useSelector(state => state.categories.categoriesList);
   const categoriesLoading = useSelector(state => state.categories.categoriesLoading);
+  const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,7 +37,7 @@ export const CategoriesNavigation = () => {
         {
           className: 'btn-danger',
           title: 'Delete',
-          action: () => { dispatch(deleteCategoryById(catid)) }
+          action: () => { dispatch(deleteCategoryById(catid, token)) }
         }
       ]
     })

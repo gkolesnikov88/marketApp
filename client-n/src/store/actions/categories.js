@@ -1,4 +1,5 @@
 import * as types from "./actionsType";
+import {changeGoodsCategoryTo, fetchGoods} from "./good";
 
 export function fetchCategories() {
   return async (dispatch) => {
@@ -25,14 +26,20 @@ export function fetchCategoriesSuccess(categories) {
   }
 }
 
-export function deleteCategoryById(categoryId) {
+export function deleteCategoryById(categoryId, token) {
   return async (dispatch) => {
     try {
       await fetch(`/api/categories/${categoryId}`, {
         method: 'DELETE',
       });
 
+      const response = await changeGoodsCategoryTo(categoryId, token);
+      if (response.status !== 200) {
+        throw new Error('Error on change goods category');
+      }
+
       dispatch(fetchCategories());
+      dispatch(fetchGoods());
 
     } catch (e) {
 

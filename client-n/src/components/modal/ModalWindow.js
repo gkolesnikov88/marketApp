@@ -1,28 +1,35 @@
 import GoodsPageContext from "../../pages/GoodsPage/GoodsPageContext";
-import {useContext, useEffect} from "react";
-import $ from "jquery";
+import {useContext, useEffect, useState} from "react";
 
 export const ModalWindow = () => {
 
   // context
   const {modalOptions, setModalOptions} = useContext(GoodsPageContext);
 
-  $('#modalWindow').on('hidden.bs.modal', function (e) {
-    setModalOptions({
-      ...modalOptions,
-      showModal: false
-    })
-  })
+  // state
+  let [modalShowStyle,setModalShowStyle] = useState({display: "none"});
 
   useEffect(() => {
     if (modalOptions.showModal) {
-      $('#modalWindow').modal('show');
+      setModalShowStyle({display: "block"});
+    } else {
+      setModalShowStyle({display: "none"});
     }
   }, [modalOptions.showModal])
 
   const onClickEvent = (action) => {
-    $('#modalWindow').modal('hide');
+    setModalOptions({
+      ...modalOptions,
+      showModal: false
+    })
     action(modalOptions);
+  }
+
+  const closeModal = (event) => {
+    setModalOptions({
+      ...modalOptions,
+      showModal: false
+    })
   }
 
   const onChangeEvent = (onChange, value) => {
@@ -30,12 +37,12 @@ export const ModalWindow = () => {
   }
 
   return (
-    <div className="modal" tabIndex="-1" id="modalWindow">
+    <div className="modal" tabIndex="-1" id="modalWindow" style={modalShowStyle}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">{ modalOptions.header }</h5>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={closeModal}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
@@ -79,7 +86,7 @@ export const ModalWindow = () => {
             })}
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-secondary" data-dismiss="modal"  onClick={closeModal}>Close</button>
             {
               modalOptions.buttons.map(button => {
                 const classesName = ['btn'];

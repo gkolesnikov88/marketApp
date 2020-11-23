@@ -1,3 +1,5 @@
+const auth = require('./../middleware/auth.middleware');
+
 const {Router} = require('express');
 const router = new Router();
 const Categories = require('../models/Categories');
@@ -11,7 +13,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const {name} = req.body;
     const category = new Categories({name});
@@ -31,7 +33,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
     const category = await Categories.findOneAndDelete({_id: req.params.id});
     res.json(category);

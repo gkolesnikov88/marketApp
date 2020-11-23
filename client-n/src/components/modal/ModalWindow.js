@@ -89,16 +89,10 @@ export const ModalWindow = () => {
             <button type="button" className="btn btn-secondary" data-dismiss="modal"  onClick={closeModal}>Close</button>
             {
               modalOptions.buttons.map(button => {
-                const classesName = ['btn'];
-                if (button.className) {
-                  classesName.push(button.className);
-                } else {
-                  classesName.push('btn-primary');
-                }
                 return (
                   <button
                     type="button"
-                    className={ classesName.join(' ') }
+                    className={ `btn ${button.className || 'btn-primary'}` }
                     onClick={ () => onClickEvent(button.action) }
                     key={ button.title }
                   >{ button.title }</button>)

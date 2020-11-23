@@ -1,4 +1,5 @@
 import * as types from './actionsType';
+import is from 'is_js';
 
 export function fetchGoods() {
   return async (dispatch) => {
@@ -32,7 +33,7 @@ export function fetchGoodsByCategories(catId) {
 }
 export async function returnGoodsInCategory(catId) {
   let url = '/api/goods';
-  if (catId !== undefined) {
+  if (!is.undefined(catId)) {
     url = `/api/goods/inCategory/${catId}`;
   }
   const response = await fetch(url);

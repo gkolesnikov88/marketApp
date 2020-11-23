@@ -46,7 +46,6 @@ router.put('/', auth, async (req, res) => {
   try {
     const {_id, name, purchase, sell, category} = req.body;
     const good = await Goods.findById(_id);
-    console.log(category)
     good.name = name;
     good.purchasePrice = purchase;
     good.sellingPrice = sell;

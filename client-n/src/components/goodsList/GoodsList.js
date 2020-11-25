@@ -63,6 +63,10 @@ export const GoodsList = () => {
           type: 'select', text: 'Category', value: item.category || categoryByDefault, id: 'category', selectedId: item.category,
           selectOptions: categoriesList.slice(),
           onChange: (modalOptionsFromModal,value) => onInputChange(modalOptionsFromModal,'category', value)
+        },
+        urlImg: {
+          type: 'input', text: 'Image url', value: item.urlImg || '', id: 'urlImg',
+          onChange: (modalOptionsFromModal, value) => onInputChange(modalOptionsFromModal,'urlImg', value)
         }},
       buttons: [
         {
@@ -89,7 +93,8 @@ export const GoodsList = () => {
       name: modalOptionsFromModal.elements.name.value,
       purchase: modalOptionsFromModal.elements.purchase.value,
       sell: modalOptionsFromModal.elements.sell.value,
-      category: modalOptionsFromModal.elements.category.value
+      category: modalOptionsFromModal.elements.category.value,
+      urlImg: modalOptionsFromModal.elements.urlImg.value,
     }, token));
   }
 

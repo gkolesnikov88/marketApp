@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.post('/', auth, async (req, res) => {
   try {
-    const {name, purchase, sell, category} = req.body;
+    const {name, purchase, sell, category, urlImg} = req.body;
 
     const goodsGeneralEnum = await GoodsEnumerator.findOne({name: 'GoodsGeneral'});
     if (!goodsGeneralEnum) {
@@ -33,7 +33,8 @@ router.post('/', auth, async (req, res) => {
       name,
       purchasePrice: purchase,
       sellingPrice: sell,
-      category: category === 'Without category' ? null : Types.ObjectId(category)
+      category: category === 'Without category' ? null : Types.ObjectId(category),
+      urlImg
     });
     good.save();
     res.status(201).json(good);
@@ -44,12 +45,13 @@ router.post('/', auth, async (req, res) => {
 
 router.put('/', auth, async (req, res) => {
   try {
-    const {_id, name, purchase, sell, category} = req.body;
+    const {_id, name, purchase, sell, category, urlImg} = req.body;
     const good = await Goods.findById(_id);
     good.name = name;
     good.purchasePrice = purchase;
     good.sellingPrice = sell;
     good.category = category === 'Without category' ? null : Types.ObjectId(category);
+    good.urlImg = urlImg;
     good.save();
     res.status(201).json(good);
   } catch (e) {

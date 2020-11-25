@@ -6,6 +6,7 @@ const schema = new Schema({
   purchasePrice: {type: Number, required: true},
   sellingPrice: {type: Number, required: true},
   category: {type: Types.ObjectId, ref: 'Categories'},
+  urlImg: {type: String,},
 });
 
 module.exports = model('Goods', schema);

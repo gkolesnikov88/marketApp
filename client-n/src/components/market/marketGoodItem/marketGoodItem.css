@@ -1,0 +1,113 @@
+.catalog-item {
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.16);
+    border: solid 1px transparent;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+}
+
+.n-catalog-product {
+    width: 100%;
+}
+
+.n-catalog-product__main {
+    display: flex;
+    padding: 16px 20px 12px;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.product-info {
+    display: flex;
+}
+
+.product-info__image {
+    margin: 0 12px auto 0;
+    width: 92px;
+    height: 92px;
+}
+
+.product-info__image img {
+    width: 100%;
+    height: 100%;
+}
+
+.product-info__image img:hover {
+    box-shadow: 0 0 20px #ffa218;
+}
+
+.product-info__title {
+    height: 85px;
+    min-width: 390px;
+    max-width: 390px;
+}
+
+.product-info__title-link:hover a {
+    text-decoration: none;
+    color: #fc5808;
+}
+.product-info__title-link a {
+    font-size: 18px;
+    color: #333;
+}
+
+.n-catalog-product__buttons {
+    width: 100%;
+    margin-left: 104px;
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buy-btn {
+    background: #fff;
+    color: #333;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+}
+
+.n-catalog-product__buttons:hover .buy-btn {
+    background-image: linear-gradient(to top, #fc8507, #ffa218);
+    border: 1px solid transparent;
+    border-top-color: #fc8507;
+    border-bottom-color: #ffa218;
+    color: #fff;
+}
+
+.lightbox {
+    /* Default to hidden */
+    display: none;
+
+    /* Overlay entire screen */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /* A bit of padding around image */
+    padding: 1em;
+
+    /* Translucent background */
+    background: rgba(255, 162, 24, 0.8);
+}
+
+/* Unhide the lightbox when it's the target */
+.lightbox:target {
+    display: block;
+}
+
+.lightbox span {
+    /* Full width and height */
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    /* Size and position background image */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

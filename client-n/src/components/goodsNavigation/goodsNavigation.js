@@ -41,7 +41,11 @@ export const GoodsNavigation = () => {
           type: 'select', text: 'Category', value: categoryByDefault, id: 'category', selectedId: null,
           selectOptions: categoriesList.slice(),
           onChange: (modalOptionsFromModal,value) => onInputChange(modalOptionsFromModal,'category', value)
-        }},
+        },
+        urlImg: {
+          type: 'input', text: 'Image url', value: '', id: 'urlImg',
+          onChange: (modalOptionsFromModal, value) => onInputChange(modalOptionsFromModal,'urlImg', value)
+        },},
       buttons: [
         {
           className: 'btn-primary',
@@ -86,7 +90,8 @@ export const GoodsNavigation = () => {
       name: modalOptionsFromModal.elements.name.value,
       purchase: modalOptionsFromModal.elements.purchase.value,
       sell: modalOptionsFromModal.elements.sell.value,
-      category: modalOptionsFromModal.elements.category.value
+      category: modalOptionsFromModal.elements.category.value,
+      urlImg: modalOptionsFromModal.elements.urlImg.value,
     }, token));
   }
 

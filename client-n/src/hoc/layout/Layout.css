@@ -1,7 +1,26 @@
 .Layout {
     height: 100vh;
+    background-color: #f6f6f6;
 }
 
 .nav-link {
     cursor: pointer;
+}
+
+.container {
+    min-width: 972px;
+    margin: 0 auto;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.orange-icon {
+    color: #FC8507;
 }
